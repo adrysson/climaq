@@ -18,6 +18,7 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Network\Exception\NotFoundException;
+use Cake\View\Helper\SessionHelper;
 
 if (!Configure::read('debug')) :
     throw new NotFoundException(
@@ -33,7 +34,7 @@ endif;
   <div class="intro-text">
     <h1>Bem-vindo ao <strong>Climaq</strong></h1>
     <p>Aqui você possui informações sobre a previsão do tempo de sua cidade em tempo real!</p>
-    <a href="#services-section" class="btn btn-default btn-lg page-scroll">Pesquisar cidade</a> </div>
+    <a href="users/register" class="btn btn-default btn-lg page-scroll">Pesquisar cidade</a> </div>
 </header>
 
 <!-- Services Section -->

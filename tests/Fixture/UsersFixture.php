@@ -28,6 +28,7 @@ class UsersFixture extends TestFixture
         'modified' => ['type' => 'timestamp', 'length' => null, 'null' => false, 'default' => '0000-00-00 00:00:00', 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['user_id'], 'length' => []],
+            'unique_email' => ['type' => 'unique', 'columns' => ['user_email'], 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -50,8 +51,8 @@ class UsersFixture extends TestFixture
             'user_city' => 'Lorem ipsum dolor sit amet',
             'user_state' => 'Lorem ipsum dolor sit amet',
             'user_password' => 'Lorem ipsum dolor sit amet',
-            'created' => 1515947213,
-            'modified' => 1515947213
+            'created' => 1515948487,
+            'modified' => 1515948487
         ],
     ];
 }

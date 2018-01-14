@@ -55,6 +55,9 @@ $cakeDescription = 'Climaq - Previsão do tempo em tempo real';
             <li><?= $this->Html->link(__('List Users Access'), ['controller' => 'UsersAccess', 'action' => 'index']) ?></li>
             <li><?= $this->Html->link(__('New Users Acces'), ['controller' => 'UsersAccess', 'action' => 'add']) ?></li>
           <?php endif ?>
+          <?php if($this->request->session()->check('Auth.User')):?>
+            <li><?= $this->Html->link(__('Logout'),['controller'=>'users','action'=>'logout']) ?></li>
+          <?php endif ?>
         </ul>
       </div>
       <!-- /.navbar-collapse -->

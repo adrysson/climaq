@@ -63,7 +63,7 @@ echo $this->Html->css('users/cadastrar.css')
             </div>
           </div>
         </div>
-
+        <p>Já possui cadastro? <a href="/users/login">Faça seu login</a></p>
         <div class="form-group ">
           <?= $this->Form->button(__('Realizar cadastro'), ['type'=>'submit', 'class'=>'btn btn-success btn-lg btn-block login-button']) ?>
         </div>

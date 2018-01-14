@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,6 +13,12 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+      parent::beforeFilter($event);
+      $this->Auth->allow('register');
+
+    }
 
     /**
      * Index method
@@ -46,8 +53,12 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function register()
     {
+      if($this->request->session()->check('Auth.User')){
+        $this->redirect(['controller'=>'Climate','action'=>'find']);
+      }
+
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -103,5 +114,26 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function login()
+    {
+      if($this->request->session()->check('Auth.User')){
+        $this->redirect(['controller'=>'Climate','action'=>'find']);
+      }
+
+      if($this->request->is('post')){
+        $user = $this->Auth->identify();
+        if($user){
+          $this->Auth->setUser($user);
+          return $this->redirect($this->Auth->redirectUrl());
+        }
+      }
+    }
+
+    public function logout()
+    {
+      $this->Auth->logout();
+      return $this->redirect(['action'=>'login']);
     }
 }
