@@ -9,8 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property |\Cake\ORM\Association\BelongsTo $UsersAccess
- *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
@@ -39,11 +37,6 @@ class UsersTable extends Table
         $this->setPrimaryKey('user_id');
 
         $this->addBehavior('Timestamp');
-
-        $this->belongsTo('UsersAccess', [
-            'foreignKey' => 'access_id',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -88,20 +81,12 @@ class UsersTable extends Table
             ->requirePresence('user_state', 'create')
             ->notEmpty('user_state');
 
+        $validator
+            ->scalar('user_password')
+            ->maxLength('user_password', 255)
+            ->requirePresence('user_password', 'create')
+            ->notEmpty('user_password');
+
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['access_id'], 'UsersAccess'));
-
-        return $rules;
     }
 }

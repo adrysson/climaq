@@ -12,9 +12,11 @@ use Cake\ORM\Entity;
  * @property string $user_cep
  * @property string $user_city
  * @property string $user_state
- * @property int $access_id
+ * @property string $user_password
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\UsersAcces $access
  */
 class User extends Entity
 {
@@ -34,8 +36,9 @@ class User extends Entity
         'user_cep' => true,
         'user_city' => true,
         'user_state' => true,
-        'access_id' => true,
+        'user_password' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'access' => true
     ];
 }

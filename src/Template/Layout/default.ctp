@@ -1,6 +1,6 @@
 <?php
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Climaq - Previsão do tempo em tempo real';
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,11 +13,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 
     <!-- Bootstrap -->
-    <?= $this->Html->css('bootstrap.css') ?>
+    <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('font-awesome/css/font-awesome.css') ?>
 
     <!-- Stylesheet -->
@@ -40,7 +39,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-        <a class="navbar-brand" href="/"><i class="fa fa-sun-o"></i> Helios<strong></strong></a> </div>
+        <a class="navbar-brand" href="/"><i class="fa fa-sun-o"></i> Climaq<strong></strong></a> </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -51,6 +50,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
           <li><a href="#about-section" class="page-scroll">About</a></li>
           <li><a href="#team-section" class="page-scroll">Team</a></li>
           <li><a href="#contact-section" class="page-scroll">Contact</a></li>
+          <?php if($this->request->here == '/users/cadastrar'):?>
+            <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('List Users Access'), ['controller' => 'UsersAccess', 'action' => 'index']) ?></li>
+            <li><?= $this->Html->link(__('New Users Acces'), ['controller' => 'UsersAccess', 'action' => 'add']) ?></li>
+          <?php endif ?>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -62,20 +66,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('content') ?>
     <footer>
 
-      <div id="social-section">
-        <div class="container">
-          <div class="social">
-            <ul>
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a href="#"><i class="fa fa-github"></i></a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
       <div id="footer">
         <div class="container">
           <div class="fnav">
@@ -95,7 +85,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       <?= $this->Html->script('jquery.prettyPhoto.js') ?>
       <?= $this->Html->script('jquery.isotope.js') ?>
       <?= $this->Html->script('jqBootstrapValidation.js') ?>
-      <?= $this->Html->script('contact_me.js') ?>
 
       <!-- Javascripts -->
       <?= $this->Html->script('main.js') ?>
