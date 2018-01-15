@@ -4,7 +4,7 @@
         <div class="card card-container">
             <center><h2>Login</h2>
             <p id="profile-name" class="profile-name-card"></p>
-            <?= $this->Form->create('aaa', ['class'=>'form-signin']) ?>
+            <?= $this->Form->create('login', ['class'=>'form-signin']) ?>
                 <span id="reauth-email" class="reauth-email"></span>
                 <?= $this->Form->input('user_email', ['type'=>'email', 'label'=>false, 'class'=>'form-control', 'required'=>'required', 'placeholder'=>'Digite aqui seu e-mail'])  ?>
                 <?= $this->Form->input('user_password', ['type'=>'password', 'label'=>false, 'class'=>'form-control', 'required'=>'required', 'placeholder'=>'Digite aqui sua senha'])  ?>

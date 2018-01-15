@@ -56,7 +56,7 @@ class UsersController extends AppController
     public function register()
     {
       if($this->request->session()->check('Auth.User')){
-        $this->redirect(['controller'=>'Climate','action'=>'find']);
+        $this->redirect(['controller'=>'Climate','action'=>'index']);
       }
 
         $user = $this->Users->newEntity();
@@ -119,7 +119,7 @@ class UsersController extends AppController
     public function login()
     {
       if($this->request->session()->check('Auth.User')){
-        $this->redirect(['controller'=>'Climate','action'=>'find']);
+        $this->redirect(['controller'=>'Climate','action'=>'index']);
       }
 
       if($this->request->is('post')){
