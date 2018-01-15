@@ -63,7 +63,7 @@ $cakeDescription = 'Climaq - Previsão do tempo em tempo real';
       <div id="footer">
         <div class="container">
           <div class="fnav">
-            <p>Copyright &copy; Adrysson. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+            <p>Copyright &copy; Adrysson</p>
           </div>
         </div>
       </div>
