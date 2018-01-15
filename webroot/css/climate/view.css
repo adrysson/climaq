@@ -1,48 +1,57 @@
 body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background:url('../../img/bg-pages.jpg');
+    background-size: cover;
 }
 .data {
-  margin-top: 110px;
   max-width: 500px;
 }
 
 h1 {
-  color: #FFF;
+  color: var(--terciary-color);
 }
 
 .single {
 padding: 30px 15px;
-margin-top: 40px;
-background: #fcfcfc;
-border: 1px solid #f0f0f0; }
+margin-top: 110px;
+background: var(--secondary-color);
+border: 1px solid var(--secondary-color); }
 .single h3.side-title {
 margin: 0;
 margin-bottom: 10px;
 padding: 0;
 font-size: 20px;
-color: #333;
+color: var(--font-color-variant);
 text-transform: uppercase; }
 .single h3.side-title:after {
 content: '';
 width: 60px;
 height: 1px;
-background: #ff173c;
+background: var(--quaternary-color);
 display: block;
 margin-top: 6px; }
 
 .single ul {
 margin-bottom: 0; }
 .single li a {
-color: #666;
+color: var(--font-color);
 font-size: 14px;
 text-transform: uppercase;
-border-bottom: 1px solid #f0f0f0;
+border-bottom: 1px solid var(--secondary-color);
 line-height: 40px;
 display: block;
 text-decoration: none; }
 .single li a:hover {
-color: #ff173c; }
+color: var(--quaternary-color); }
 .single li:last-child a {
 border-bottom: 0; }
+
+.btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+a, a:hover{
+  color: var(--secondary-color);
+}

@@ -34,7 +34,6 @@ class User extends Entity
         'user_email' => true,
         'user_cep' => true,
         'user_city' => true,
-        'user_state' => true,
         'user_password' => true,
         'created' => true,
         'modified' => true

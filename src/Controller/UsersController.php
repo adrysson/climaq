@@ -21,34 +21,6 @@ class UsersController extends AppController
     }
 
     /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $user = $this->Users->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('user', $user);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -63,11 +35,11 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Usuário cadastrado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('Devido a um erro não foi possível realizar o cadastro. Tente novamente.'));
         }
         $this->set(compact('user'));
     }
@@ -84,14 +56,18 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
+        if(!$user->user_id == $this->request->session()->read('Auth.User.user_id')){
+          return $this->redirect(['controller'=>'Pages', 'action'=>'display']);
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Alterações salvas com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=>'Pages', 'action'=>'display']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('Devido a um erro as alterações não foram salvas. Tente novamente.'));
         }
         $this->set(compact('user'));
     }
@@ -107,10 +83,12 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
+
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Auth->logout();
+            $this->Flash->success(__('Usuário removido com sucesso.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Devido a um erro não foi possível remover o usuário. Tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -126,7 +104,7 @@ class UsersController extends AppController
         $user = $this->Auth->identify();
         if($user){
           $this->Auth->setUser($user);
-          return $this->redirect($this->Auth->redirectUrl());
+          return $this->redirect(['controller'=>'Climate', 'action'=>'index']);
         }
       }
     }

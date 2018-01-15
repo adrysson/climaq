@@ -34,5 +34,5 @@ endif;
   <div class="intro-text">
     <h1>Bem-vindo ao <strong>Climaq</strong></h1>
     <p>Aqui você possui informações sobre o clima de sua cidade em tempo real!</p>
-    <a href="users/register" class="btn btn-default btn-lg page-scroll">Pesquisar cidade</a> </div>
+    <a href="climate" class="btn btn-default btn-lg page-scroll">Pesquisar cidade</a> </div>
 </header>

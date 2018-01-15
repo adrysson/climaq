@@ -3,34 +3,57 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+echo $this->Html->css('users/cadastrar.css')
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->user_id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->user_id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users Access'), ['controller' => 'UsersAccess', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Users Acces'), ['controller' => 'UsersAccess', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit User') ?></legend>
-        <?php
-            echo $this->Form->control('user_name');
-            echo $this->Form->control('user_email');
-            echo $this->Form->control('user_cep');
-            echo $this->Form->control('user_city');
-            echo $this->Form->control('user_state');
-            echo $this->Form->control('access_id', ['options' => $usersAccess]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<center>
+<div class="container">
+  <div class="row main">
+    <div class="main-login main-center">
+    <h5>Edite suas informações.</h5>
+      <?= $this->Form->create($user) ?>
+        <div class="form-group">
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <?php echo $this->Form->input('user_name', ['type'=>'text', 'class'=>'form-control', 'label'=>false, 'placeholder'=>'Informe seu nome', 'maxLength'=>'255']); ?>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+              <?php echo $this->Form->input('user_email', ['type'=>'email', 'class'=>'form-control', 'label'=>false, 'placeholder'=>'Informe seu e-mail', 'maxLength'=>'255', 'minLength'=>'5']); ?>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+              <?php echo $this->Form->input('user_cep', ['type'=>'text', 'class'=>'form-control', 'label'=>false, 'placeholder'=>'Informe seu CEP', 'maxLength'=>'8']); ?>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-location-arrow fa" aria-hidden="true"></i></span>
+              <?php echo $this->Form->input('user_city', ['type'=>'text', 'class'=>'form-control', 'label'=>false, 'placeholder'=>'Informe sua Cidade','maxLength'=>'255']); ?>
+            </div>
+          </div>
+        </div>
+              <?php echo $this->Form->input('user_password', ['type'=>'hidden', 'class'=>'form-control', 'label'=>false, 'placeholder'=>'Digite sua senha', 'minLength'=>'6', 'maxLength'=>'255']); ?>
+        <div class="form-group ">
+          <?= $this->Form->button(__('Salvar Alterações'), ['type'=>'submit', 'class'=>'btn btn-success btn-lg btn-block login-button']) ?>
+        </div>
+      <?= $this->Form->end() ?>
+    </div>
+  </div>
 </div>
+
+<?= $this->Html->script('jquery.1.11.1.js') ?>
+<?= $this->Html->script('via-cep.js') ?>

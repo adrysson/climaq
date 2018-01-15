@@ -53,40 +53,36 @@ class UsersTable extends Table
 
         $validator
             ->scalar('user_name')
-            ->maxLength('user_name', 255)
+            ->maxLength('user_name', 255, 'O nome deve ter no máximo 255 caracteres')
             ->requirePresence('user_name', 'create')
-            ->notEmpty('user_name');
+            ->notEmpty('user_name', 'Este campo é de preenchimento obrigatório');
 
         $validator
             ->scalar('user_email')
-            ->maxLength('user_email', 255)
+            ->minLength('user_email', 5, 'O campo e-mail deve ter no mínimo 5 caracteres')
+            ->maxLength('user_email', 255, 'O campo e-mail deve ter no máximo 255 caracteres')
             ->requirePresence('user_email', 'create')
-            ->notEmpty('user_email')
-            ->add('user_email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->notEmpty('user_email', 'Este campo é de preenchimento obrigatório')
+            ->add('user_email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message'=>'Já existe um usuário com este e-mail'])
+            ->add('user_email', 'validFormat', ['rule' => 'email', 'message' => 'O email digitado deve ser válido']);
 
         $validator
             ->scalar('user_cep')
-            ->maxLength('user_cep', 255)
-            ->requirePresence('user_cep', 'create')
-            ->notEmpty('user_cep');
+            ->maxLength('user_cep', 8, 'O CEP deve ter no máximo 8 caracteres')
+            ->requirePresence('user_cep', 'create');
 
         $validator
             ->scalar('user_city')
-            ->maxLength('user_city', 255)
+            ->maxLength('user_city', 255, 'A cidade deve ter no máximo 255 caracteres')
             ->requirePresence('user_city', 'create')
-            ->notEmpty('user_city');
-
-        $validator
-            ->scalar('user_state')
-            ->maxLength('user_state', 255)
-            ->requirePresence('user_state', 'create')
-            ->notEmpty('user_state');
+            ->notEmpty('user_city', 'Este campo é de preenchimento obrigatório');
 
         $validator
             ->scalar('user_password')
-            ->maxLength('user_password', 255)
+            ->minLength('user_password', 6, 'A senha deve ter no mínimo 6 caracteres')
+            ->maxLength('user_password', 255, 'A senha deve ter no máximo 255 caracteres')
             ->requirePresence('user_password', 'create')
-            ->notEmpty('user_password');
+            ->notEmpty('user_password', 'Este campo é de preenchimento obrigatório');
 
         return $validator;
     }

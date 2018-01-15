@@ -44,18 +44,10 @@ $cakeDescription = 'Climaq - Previsão do tempo em tempo real';
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#home" class="page-scroll">Home</a></li>
-          <li><a href="#services-section" class="page-scroll">Services</a></li>
-          <li><a href="#works-section" class="page-scroll">Portfolio</a></li>
-          <li><a href="#about-section" class="page-scroll">About</a></li>
-          <li><a href="#team-section" class="page-scroll">Team</a></li>
-          <li><a href="#contact-section" class="page-scroll">Contact</a></li>
-          <?php if($this->request->here == '/users/cadastrar'):?>
-            <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('List Users Access'), ['controller' => 'UsersAccess', 'action' => 'index']) ?></li>
-            <li><?= $this->Html->link(__('New Users Acces'), ['controller' => 'UsersAccess', 'action' => 'add']) ?></li>
-          <?php endif ?>
           <?php if($this->request->session()->check('Auth.User')):?>
+            <li><?= $this->Html->link(__('Pesquisar Cidade'),['controller'=>'Climate','action'=>'index']) ?></li>
+            <li><?= $this->Form->postLink(__('Apagar Conta'),['controller'=>'users','action'=>'delete', $this->request->session()->read('Auth.User.user_id')], ['confirm'=>'Tem certeza que deseja apagar sua conta?']) ?></li>
+            <li><?= $this->Html->link(__('Editar Informações'),['controller'=>'users','action'=>'edit', $this->request->session()->read('Auth.User.user_id')]) ?></li>
             <li><?= $this->Html->link(__('Logout'),['controller'=>'users','action'=>'logout']) ?></li>
           <?php endif ?>
         </ul>
@@ -65,7 +57,6 @@ $cakeDescription = 'Climaq - Previsão do tempo em tempo real';
     <!-- /.container-fluid -->
   </nav>
 
-    <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
     <footer>
 

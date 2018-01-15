@@ -23,7 +23,9 @@ if(!$response = $this->OpenWeatherMap->request($city, $key)): ?>
         <?php endforeach ?>
       </ul>
     </div>
+    <button type="button" name="pesquisar_nova_cidade" id="pesquisar-nova-cidade" class="btn btn-success form-control">
+      <a href="/climate">Pesquisar nova cidade</a>
+    </button>
 </div>
-<a href="/climate">Pesquisar nova cidade</a>
 
 <?php endif ?>
