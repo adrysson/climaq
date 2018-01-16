@@ -18,9 +18,7 @@ class UsersController extends AppController
       parent::beforeFilter($event);
       $this->Auth->allow('register');
 
-    }
-
-    /**
+    }    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
@@ -37,7 +35,7 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Usuário cadastrado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+                $this->redirect(['controller'=>'Climate','action'=>'index']);
             }
             $this->Flash->error(__('Devido a um erro não foi possível realizar o cadastro. Tente novamente.'));
         }
